@@ -1,7 +1,7 @@
 <div>
   <ul>
-    <ch-c-item *ngFor="let c of challanges; let i = index" [challange]="c" [id]="i"></ch-c-item>
+    <ch-c-item *ngFor="let c of challanges" [challange]="c" [ownChallange]="myChallanges"></ch-c-item>
   </ul>
 </div>
 
-<router-outlet></router-outlet>
+<!--TODO: change challange id to real id (not index) -->

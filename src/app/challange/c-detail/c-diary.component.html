@@ -1,0 +1,14 @@
+<div>
+  <h3 class="title-border">Diary</h3>
+  <div class="diary-container">
+    <div class="diary-item"
+         *ngFor="let day of challange.accomplished; let i = index"
+         [ngClass]="{'-today': i === possibleDays}"
+         (click)="onDayClick(i)">
+
+      <i class="fa fa-check" *ngIf="day"></i>
+      <i class="fa fa-times" *ngIf="!day && i < possibleDays "></i>
+      <span class="day-count">{{ i+1 }}</span>
+    </div>
+  </div>
+</div>

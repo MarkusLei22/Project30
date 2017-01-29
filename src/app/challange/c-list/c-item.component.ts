@@ -1,15 +1,18 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import { Challange } from '../challange';
+import {ChallangeService} from "../challange.service";
 
 @Component({
   selector: 'ch-c-item',
   templateUrl: './c-item.component.html',
-  styleUrls: ['./c-item.component.css']
 })
 export class CItemComponent {
   @Input() challange: Challange;
-  @Input() id: number;
+  @Input() ownChallange: boolean;
 
-  constructor() { }
+  constructor(private cService: ChallangeService) { }
 
+  onComplete() {
+    this.cService.completeToday(this.challange);
+  }
 }

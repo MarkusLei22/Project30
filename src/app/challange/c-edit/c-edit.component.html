@@ -1,0 +1,21 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <h3 class="title-border">Title</h3>
+  <input type="text" name="title" formControlName="title" placeholder="Title">
+
+  <h3 class="title-border">Description</h3>
+  <textarea name="description" formControlName="desc" placeholder="Description" rows="5" cols="30"></textarea>
+
+  <h3 class="title-border">Experience</h3>
+  <ul style="list-style: upper-roman" formArrayName="exp">
+    <li *ngFor="let exp of editForm.controls['exp'].controls; let i = index">
+      <input formControlName="{{i}}" type="text" >
+      <button (click)="onDeleteExp(i)"><i class="fa fa-times"></i></button>
+    </li>
+  </ul>
+  <button (click)="onAddExp()" type="button"><i class="fa fa-plus"></i></button>
+  <h3 class="title-border">Startdate</h3>
+  <input type="date" name="startDate"  formControlName="startDate" [valueAsDate]="challange.startDate">
+
+  <input type="submit" [disabled]="!editForm.valid">
+  <button type="button" class="-warning" (click)="onDelete()">Delete</button>
+</form>

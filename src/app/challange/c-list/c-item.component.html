@@ -1,3 +1,8 @@
-<a [routerLink]="[id]">
-  <h3>{{challange.title}}</h3>
+<a [routerLink]="[challange.id]">
+  <h3 class="title-border">{{challange.title}} {{challange.failed}}</h3>
+  <ch-c-bar [challange]="challange"></ch-c-bar>
 </a>
+<span *ngIf="ownChallange">
+  <button class="-success" (click)="onComplete()">Complete</button>
+  <button class="-warning" [routerLink]="[challange.id, 'edit']">Edit</button>
+</span>
