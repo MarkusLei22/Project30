@@ -5,14 +5,10 @@ import {ChallangeService} from "../challange.service";
 @Component({
   selector: 'ch-c-desc',
   templateUrl: './c-desc.component.html',
+  styleUrls: ['./c-desc.component.css']
 })
-export class CDescComponent {
+export class CDescComponent{
   @Input() challange: Challange;
-  @Output() editClicked = new EventEmitter();
 
   constructor() { }
-
-  onClickEdit() {
-    this.editClicked.emit();
-  }
 }

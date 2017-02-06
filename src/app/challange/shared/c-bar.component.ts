@@ -9,9 +9,10 @@ import {ChallangeService} from "../challange.service";
 })
 export class CBarComponent implements OnInit {
   progAcc: string;
-  currDay: string;
+  runtime: string;
   accDays: number;
   @Input() challange: Challange;
+  @Input() detailView: boolean;
 
   constructor(private cService: ChallangeService) { }
 
@@ -20,7 +21,7 @@ export class CBarComponent implements OnInit {
     let acc = Math.round(this.accDays / 30 * 100);
     let days = Math.round(this.cService.getChallangeRuntime(this.challange) / 30 * 100);
     this.progAcc = acc + "%";
-    this.currDay = days - acc + "%";
+    this.runtime = days - acc + "%";
   }
 
 }

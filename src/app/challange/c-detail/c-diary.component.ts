@@ -9,7 +9,8 @@ import {ChallangeService} from "../challange.service";
 })
 export class CDiaryComponent implements OnInit {
   @Input() challange: Challange;
-  @Output() diaryChanged: EventEmitter<any> = new EventEmitter();
+  @Input() diaryModifyable: boolean;
+  @Output() diaryChanged: EventEmitter<Challange> = new EventEmitter<Challange>();
   possibleDays: number;
 
   constructor(private cService: ChallangeService) { }
@@ -19,9 +20,10 @@ export class CDiaryComponent implements OnInit {
   }
 
   onDayClick(index:number) {
-    if(index <= this.possibleDays) {
+    if(index < this.possibleDays && this.diaryModifyable) {
+      let oldChallange: Challange = Object.assign({}, this.challange);
       this.challange.accomplished[index] = !this.challange.accomplished[index];
-      this.diaryChanged.emit();
+      this.diaryChanged.emit(oldChallange);
     }
   }
 }

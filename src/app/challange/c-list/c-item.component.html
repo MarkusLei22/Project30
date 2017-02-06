@@ -1,8 +1,18 @@
-<a [routerLink]="[challange.id]">
-  <h3 class="title-border">{{challange.title}} {{challange.failed}}</h3>
-  <ch-c-bar [challange]="challange"></ch-c-bar>
-</a>
-<span *ngIf="ownChallange">
-  <button class="-success" (click)="onComplete()">Complete</button>
-  <button class="-warning" [routerLink]="[challange.id, 'edit']">Edit</button>
-</span>
+<div class="item" [class.failed]="challange.failed">
+  <a [routerLink]="[challange.id]">
+    <h3 class="angle-border-parent">
+      <span class="angle-border-child challange-title">
+        {{challange.title}}
+      </span>
+    </h3>
+    <h3 *ngIf="challange.failed" class="failed-text">FAILED</h3>
+
+    <ch-c-bar [challange]="challange" [detailView]="false"></ch-c-bar>
+  </a>
+
+
+  <span *ngIf="ownChallange">
+    <button class="-success" (click)="onComplete()">Complete</button>
+    <button class="-warning" [routerLink]="[challange.id, 'edit']">Edit</button>
+  </span>
+</div>

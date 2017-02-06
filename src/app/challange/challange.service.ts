@@ -3,6 +3,7 @@ import {Challange} from "./challange";
 import {Http, Response, Headers} from "@angular/http";
 import 'rxjs/Rx';
 import {User} from "../authentication/user";
+import {Observable} from "rxjs";
 
 declare var firebase: any;
 
@@ -10,10 +11,7 @@ declare var firebase: any;
 export class ChallangeService {
   dataChanged = new EventEmitter<Challange[]>();
 
-
   private challanges: Challange[] = [];
-
-  constructor(private http: Http) {}
 
   getChallanges() {
     console.log(this.challanges);
@@ -21,9 +19,13 @@ export class ChallangeService {
   }
 
   getChallange(id: string) {
-    return this.challanges.filter(
-      (c:Challange) => c.id == id
-    )[0];
+    if(this.challanges.length > 0) {
+      return this.challanges.filter(
+        (c: Challange) => c.id == id
+      )[0];
+    }
+    else
+      this.fetchChallange(id);
   }
 
   deleteChallange(challange: Challange) {
@@ -32,6 +34,7 @@ export class ChallangeService {
   }
 
   editChallange(oldChallange: Challange, newChallange: Challange) {
+    this.confirmChallangeLegitity(newChallange);
     this.challanges[this.challanges.indexOf(oldChallange)] = newChallange;
     this.updateChallangeDb(newChallange);
   }
@@ -49,6 +52,7 @@ export class ChallangeService {
             .map(key => snapshot.val()[key]);
           for (let i = 0; i < this.challanges.length; i++) {
             this.challanges[i] = this.reformatStoredChallange(this.challanges[i]);
+            this.confirmChallangeLegitity(this.challanges[i]);
           }
         }
         else
@@ -68,6 +72,7 @@ export class ChallangeService {
           // set an empty experience array if no experiences
           for (let i = 0; i < this.challanges.length; i++) {
             this.challanges[i] = this.reformatStoredChallange(this.challanges[i]);
+            this.confirmChallangeLegitity(this.challanges[i]);
           }
         }
         else
@@ -77,6 +82,20 @@ export class ChallangeService {
     );
   }
 
+  fetchChallange(id: string) {
+    firebase.database().ref('challanges/' + id).on('value',
+      (snapshot: any) => {
+        this.challanges = [];
+        if(snapshot.val() != null) {
+          this.challanges[0] = snapshot.val();
+          for (let i = 0; i < this.challanges.length; i++) {
+            this.challanges[i] = this.reformatStoredChallange(this.challanges[i]);
+            this.confirmChallangeLegitity(this.challanges[i]);
+          }
+        }
+        this.dataChanged.emit(this.challanges);
+      })
+  }
 
   addNewChallangeDb(newChallange: Challange) {
     let key = firebase.database().ref('challanges').push().key;
@@ -101,20 +120,22 @@ export class ChallangeService {
   }
 
   confirmChallangeLegitity(challange: Challange) {
-    if(this.getChallangeRuntime(challange) > this.getChallangeAccomplishedDays(challange) + 2)
+    if(this.getChallangeRuntime(challange) > this.getChallangeAccomplishedDays(challange) + 1)
       challange.failed = true;
+    else
+      challange.failed = false;
   }
 
   completeToday(challange: Challange) {
     let old: Challange = Object.assign({}, challange); // deep copy
-    challange.accomplished[this.getChallangeRuntime(challange)] = true;
+    challange.accomplished[this.getChallangeRuntime(challange) - 1] = true;
     this.editChallange(old, challange);
   }
 
 
   getChallangeRuntime(challange: Challange) {
     let dif = new Date().getTime() - challange.startDate.getTime();
-    return Math.trunc(dif / (1000 * 60 * 60 * 24));
+    return Math.trunc(dif / (1000 * 60 * 60 * 24)) + 1;
   }
 
   getChallangeAccomplishedDays(challange: Challange) {
@@ -127,7 +148,7 @@ export class ChallangeService {
       id : challange.id,
       title : challange.title,
       desc : challange.desc,
-      startDate : challange.startDate,
+      startDate : challange.startDate.toDateString(),
       failed : challange.failed,
       uid : challange.uid,
       accomplished : challange.accomplished,

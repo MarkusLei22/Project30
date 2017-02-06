@@ -11,9 +11,9 @@ const APP_ROUTES: Routes = [
   {path: 'challanges', component: CListComponent, canActivate: [AuthGuard]},
   {path: 'challanges/:id', component: CDetailComponent, canActivate: [AuthGuard]},
   {path: 'user/:userid', component: CListComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userid/:id', component: CDetailComponent, canActivate: [AuthGuard]},
+  {path: 'user/:userid/new', component: CEditComponent, canActivate: [AuthGuard], pathMatch: 'full'},
+  {path: 'user/:userid/:id', component: CDetailComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   {path: 'user/:userid/:id/edit', component: CEditComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userid/new', component: CEditComponent, canActivate: [AuthGuard]},
 
   {path: 'signin', component: SigninComponent},
   {path: 'signup', component: SignupComponent}

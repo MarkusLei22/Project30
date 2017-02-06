@@ -3,6 +3,60 @@
   box-sizing: border-box;
 }
 
-.title-border {
-  border-bottom: 1px solid darkred;
+p, li {
+  font-family: 'Exo', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+ul {
+  margin-top: 0;
+}
+
+
+.angle-border-parent {
+  display: inline-block;
+  transform: skewX(-35deg);
+  border-bottom: 2px solid darkred;
+  border-right: 2px solid darkred;
+  padding: 0 .5em 0 0;
+}
+
+.angle-border-child {
+  display: inline-block;
+  transform: skewX(35deg);
+  text-transform: uppercase;
+}
+
+h3.angle-border-parent {
+  margin-bottom: 1em;
+}
+
+
+.challange-title {
+  display: inline-block;
+}
+
+.failed .challange-title{
+  text-decoration: line-through;
+}
+
+.failed-text {
+  text-decoration: none;
+  color: darkred;
+  display: inline-block;
+  float: right;
+  margin-right: 50%;
+}
+
+.failed h3:after, .failed h2:after {
+  clear: both;
+}
+
+
+
+.detail-element {
+  margin: 20px 0;
 }

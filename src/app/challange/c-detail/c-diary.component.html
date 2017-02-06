@@ -1,9 +1,13 @@
-<div>
-  <h3 class="title-border">Diary</h3>
+<div class="detail-element">
+  <h3 class="angle-border-parent">
+      <span class="angle-border-child">
+        Diary
+      </span>
+  </h3>
   <div class="diary-container">
     <div class="diary-item"
          *ngFor="let day of challange.accomplished; let i = index"
-         [ngClass]="{'-today': i === possibleDays}"
+         [ngClass]="{'-today': i === possibleDays - 1}"
          (click)="onDayClick(i)">
 
       <i class="fa fa-check" *ngIf="day"></i>

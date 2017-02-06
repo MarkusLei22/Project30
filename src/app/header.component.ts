@@ -41,10 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.router.navigate(['/user', this.user.uid, 'new']);
   }
 
-  onSave() {
-    this.cService.storeChallanges(this.user);
-  }
-
   onSignout() {
     this.authService.signout();
   }

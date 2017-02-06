@@ -5,6 +5,7 @@ import {ChallangeService} from "../challange.service";
 @Component({
   selector: 'ch-c-item',
   templateUrl: './c-item.component.html',
+  styleUrls: ['./c-item.component.css']
 })
 export class CItemComponent {
   @Input() challange: Challange;
