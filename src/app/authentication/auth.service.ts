@@ -67,4 +67,9 @@ export class AuthService {
       }
     )
   }
+
+  getUsername(uid: string) {
+    return 'user';
+    // TODO: implement this function!
+  }
 }

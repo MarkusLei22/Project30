@@ -12,33 +12,16 @@ import {User} from "./authentication/user";
 })
 export class HeaderComponent implements OnInit, OnDestroy{
   sub: Subscription;
-  currentUserSub: Subscription;
   user: User = null;
 
   constructor(private router: Router,
               private cService: ChallangeService,
               private authService: AuthService) {}
 
-  ngOnInit() {
-    this.currentUserSub = this.authService.currentUserChanged.subscribe(
-      user => this.user = user
-    );
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  onNavigateHome() {
-    if(this.user != null)
-      this.router.navigate(['/challanges']);
-    else
-      this.router.navigate(['/']);
-  }
-
-
-  onNew() {
-    this.router.navigate(['/user', this.user.uid, 'new']);
   }
 
   onSignout() {

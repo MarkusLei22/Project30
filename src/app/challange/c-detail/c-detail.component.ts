@@ -4,11 +4,12 @@ import {Challange} from "../challange";
 import {ChallangeService} from "../challange.service";
 import {ActivatedRoute} from "@angular/router";
 import {convertValueToOutputAst} from "@angular/compiler/src/output/value_util";
+import {AuthService} from "../../authentication/auth.service";
 
 @Component({
   selector: 'ch-c-detail',
   templateUrl: './c-detail.component.html',
-
+  styleUrls: ['./c-detail.component.css']
 })
 export class CDetailComponent implements OnInit, OnDestroy {
   private sub: Subscription;
@@ -17,6 +18,7 @@ export class CDetailComponent implements OnInit, OnDestroy {
   ownChallange: boolean = false;
 
   constructor(private cService: ChallangeService,
+              private authService: AuthService,
               private route: ActivatedRoute,
               private changeDetector: ChangeDetectorRef) { }
 

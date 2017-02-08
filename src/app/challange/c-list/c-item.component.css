@@ -1,4 +1,59 @@
 .item {
-  position: relative;
-  z-index: 1;
+  max-width: 400px;
+  min-width: 360px;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.card-head {
+  display: block;
+  width: 100%;
+}
+
+.card-circle {
+  display: inline-block;
+  width: 50%;
+  float: left;
+
+  margin: 0;
+}
+
+.card-info {
+  display: inline-block;
+  width: 50%;
+  float: right;
+  text-align: center;
+
+  margin: 0;
+  padding-top: 1em;
+}
+
+.card-title {
+  clear: both;
+  display: block;
+  width: 100%;
+
+  padding-top: 1em;
+}
+
+
+.failed .card-title {
+  text-decoration: line-through;
+}
+
+.footer {
+  padding: 0;
+}
+
+.footer button {
+  margin: 0;
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+
+  float: left;
+}
+
+.footer p {
+  padding: .5em 1em;
 }

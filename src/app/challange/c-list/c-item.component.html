@@ -1,18 +1,26 @@
 <div class="item" [class.failed]="challange.failed">
-  <a [routerLink]="[challange.id]">
-    <h3 class="angle-border-parent">
-      <span class="angle-border-child challange-title">
-        {{challange.title}}
-      </span>
-    </h3>
-    <h3 *ngIf="challange.failed" class="failed-text">FAILED</h3>
+    <div class="card-box">
+      <a [routerLink]="[challange.id]">
+        <div class="card-content">
+          <div class="card-head">
 
-    <ch-c-bar [challange]="challange" [detailView]="false"></ch-c-bar>
-  </a>
+            <ch-c-circle [challange]="challange" class="card-circle"></ch-c-circle>
 
+            <p class="card-info" *ngIf="!challange.failed">{{accDays}}/30 Days</p>
+            <p class="card-info failed-text" *ngIf="challange.failed">FAILED</p>
+          </div>
+          <h3 class="card-title">{{challange.title}}</h3>
+        </div>
+      </a>
 
-  <span *ngIf="ownChallange">
-    <button class="-success" (click)="onComplete()">Complete</button>
-    <button class="-warning" [routerLink]="[challange.id, 'edit']">Edit</button>
-  </span>
+      <div class="footer" *ngIf="ownChallange">
+        <button class="-success" (click)="onComplete()">Complete</button>
+        <button class="-warning" [routerLink]="[challange.id, 'edit']">Edit</button>
+      </div>
+
+      <div class="footer" *ngIf="!ownChallange">
+        <p>by {{username}}</p>
+      </div>
+
+    </div>
 </div>

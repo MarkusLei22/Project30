@@ -1,7 +1,5 @@
 <div container *ngIf="challange != null" [class.failed]="challange.failed">
-  <h2 class="challange-title">{{challange.title}}</h2>
-  <h3 *ngIf="challange.failed" class="failed-text">FAILED</h3>
-  <ch-c-bar [challange]="challange" [detailView]="true"></ch-c-bar>
+  <ch-c-header [challange]="challange"></ch-c-header>
   <ch-c-desc [challange]="challange"></ch-c-desc>
   <ch-c-exp [challange]="challange"></ch-c-exp>
   <ch-c-diary [challange]="challange" [diaryModifyable]="ownChallange" (diaryChanged)="onDiaryModified($event)"></ch-c-diary>

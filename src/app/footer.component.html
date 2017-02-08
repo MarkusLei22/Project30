@@ -1,0 +1,19 @@
+<div id="footer-menu">
+  <ul grid>
+    <li column='4' class="nav-item" routerLinkActive="-nav-active">
+      <a [routerLink]="['/challanges']">
+        <i class="fa fa-home"></i><br>All Challanges
+      </a>
+    </li>
+    <li column='4' class="nav-item" routerLinkActive="-nav-active">
+      <a (click)="onNew()">
+        <i class="fa fa-plus"></i><br>Add Challange
+      </a>
+    </li>
+    <li column='4' class="nav-item" routerLinkActive="-nav-active">
+      <a (click)="onMyChallanges()">
+        <i class="fa fa-user"></i><br>My Challanges
+      </a>
+    </li>
+  </ul>
+</div>

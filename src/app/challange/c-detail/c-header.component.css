@@ -1,0 +1,26 @@
+.detail-header {
+  height: 150px;
+  background-color: #cccccc;
+}
+
+#row-one {
+  height: 70%;
+  margin: 0;
+}
+
+#row-two {
+  height: 30%;
+  margin: 0;
+}
+
+.col-one {
+  height: 100%;
+  width: 30%;
+  float: left;
+}
+
+.col-two {
+  height: 100%;
+  width: 70%;
+  float: left;
+}

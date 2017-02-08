@@ -1,0 +1,24 @@
+#head-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: 1em 0;
+}
+
+#head-bar ul {
+  list-style: none;
+}
+
+#head-bar ul li {
+  text-align: center;
+}
+
+#headline{
+  display: inline;
+}
+
+#head-bar a :hover {
+  cursor: pointer;
+}

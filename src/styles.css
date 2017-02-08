@@ -11,6 +11,15 @@ h1, h2, h3 {
   font-family: 'Orbitron', sans-serif;
 }
 
+main {
+  margin-top: 84px;
+  max-width: 840px;
+}
+
+[container] {
+  max-width: 900px;
+}
+
 ul {
   margin-top: 0;
 }
@@ -46,9 +55,7 @@ h3.angle-border-parent {
 .failed-text {
   text-decoration: none;
   color: darkred;
-  display: inline-block;
-  float: right;
-  margin-right: 50%;
+  margin-top: 0;
 }
 
 .failed h3:after, .failed h2:after {
@@ -58,5 +65,13 @@ h3.angle-border-parent {
 
 
 .detail-element {
-  margin: 20px 0;
+  margin: 2em 0;
+}
+
+.detail-headline {
+  margin-bottom: .5em;
+}
+
+.detail-content {
+  margin-left: 1.5em;
 }

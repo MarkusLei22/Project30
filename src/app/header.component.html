@@ -1,16 +1,15 @@
-<a (click)="onNavigateHome()" style="cursor: pointer"><h1>30 DAYS - NO EXCUSES</h1></a>
-<ul class="breadcrumb-nav" *ngIf="user != null">
-  <li class="item" routerLinkActive="-active"><a [routerLink]="['/challanges']">All Challanges</a></li>
-  <li class="item" routerLinkActive="-active"><a [routerLink]="['/user', this.user.uid]">My Challanges</a></li>
-  <li class="item" routerLinkActive="-active"><button class="-success" (click)="onNew()">+</button></li>
-  <li class="item"><button (click)="onSignout()">Sign Out</button></li>
-  <li class="item">{{user.displayName}} | {{user.email}}</li>
-</ul>
-
-<ul class="breadcrumb-nav" *ngIf="user === null">
-  <li class="item" routerLinkActive="-active"><a [routerLink]="['/signin']">Sign In</a></li>
-  <li class="item" routerLinkActive="-active"><a [routerLink]="['/signup']">Sign Up</a></li>
-</ul>
+<div id="head-bar">
+  <ul grid>
+    <li column='4'></li>
+    <li column='4'>
+      <h1 id="headline" column='4'><a [routerLink]="['/']">30 Days</a></h1>
+    </li>
+    <li column='4'>
+      <a [routerLink]="['/signin']" *ngIf="user === null" column='4'>Sign in</a>
+      <a [routerLink]="['/signout']" *ngIf="user != null" column='4'>Sign out</a>
+    </li>
+  </ul>
+</div>
 
 
 
