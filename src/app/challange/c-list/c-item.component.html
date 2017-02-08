@@ -1,26 +1,23 @@
 <div class="item" [class.failed]="challange.failed">
-    <div class="card-box">
-      <a [routerLink]="[challange.id]">
-        <div class="card-content">
-          <div class="card-head">
-
-            <ch-c-circle [challange]="challange" class="card-circle"></ch-c-circle>
-
-            <p class="card-info" *ngIf="!challange.failed">{{accDays}}/30 Days</p>
-            <p class="card-info failed-text" *ngIf="challange.failed">FAILED</p>
-          </div>
-          <h3 class="card-title">{{challange.title}}</h3>
+    <a [routerLink]="[challange.id]">
+      <div class="item-content">
+        <div class="item-head">
+          <p>{{challange.startDate | date:'yy-mm-dd'}}</p>
+          <a [routerLink]="[challange.id, 'edit']">edit</a>
         </div>
-      </a>
-
-      <div class="footer" *ngIf="ownChallange">
-        <button class="-success" (click)="onComplete()">Complete</button>
-        <button class="-warning" [routerLink]="[challange.id, 'edit']">Edit</button>
+        <div class="item-inner">
+          <h3 class="item-title">{{challange.title}}</h3>
+          <ch-c-circle [challange]="challange" class="item-circle"></ch-c-circle>
+          <p class="item-username">by {{username}}</p>
+        </div>
       </div>
+    </a>
 
-      <div class="footer" *ngIf="!ownChallange">
-        <p>by {{username}}</p>
-      </div>
+    <div class="item-footer" *ngIf="ownChallange && !challange.failed">
+      <button class="-success" (click)="onComplete()">Complete</button>
+    </div>
 
+    <div class="item-footer" *ngIf="challange.failed">
+      <p>FAILED</p>
     </div>
 </div>

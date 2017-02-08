@@ -11,12 +11,18 @@ h1, h2, h3 {
   font-family: 'Orbitron', sans-serif;
 }
 
-main {
-  margin-top: 84px;
-  max-width: 840px;
+a {
+  text-decoration: none;
 }
 
-[container] {
+main {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 84px;
+  background: #eee;
+}
+
+.container {
   max-width: 900px;
 }
 
@@ -24,25 +30,24 @@ ul {
   margin-top: 0;
 }
 
-
-.angle-border-parent {
-  display: inline-block;
-  transform: skewX(-35deg);
-  border-bottom: 2px solid darkred;
-  border-right: 2px solid darkred;
-  padding: 0 .5em 0 0;
+button {
+  background: none;
+  border-radius: 0;
+  border: 1px solid darkgray;
+  padding: .5em;
 }
 
-.angle-border-child {
-  display: inline-block;
-  transform: skewX(35deg);
-  text-transform: uppercase;
+button {
+  cursor: pointer;
 }
 
-h3.angle-border-parent {
-  margin-bottom: 1em;
+button.-success {
+  background: yellowgreen;
 }
 
+button.-warning {
+  background: orange;
+}
 
 .challange-title {
   display: inline-block;

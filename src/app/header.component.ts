@@ -11,17 +11,32 @@ import {User} from "./authentication/user";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy{
-  sub: Subscription;
+  currentUserSub: Subscription;
   user: User = null;
 
   constructor(private router: Router,
-              private cService: ChallangeService,
               private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUserSub = this.authService.currentUserChanged.subscribe(
+      user => this.user = user
+    );
+  }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.currentUserSub.unsubscribe();
+  }
+
+  onNew() {
+    this.router.navigate(['/user', this.user.uid, 'new']);
+  }
+
+  onMyChallanges() {
+    if(this.user) {
+      this.router.navigate(['/user', this.user.uid]);
+    } else {
+      this.router.navigate(['/signin']);
+    }
   }
 
   onSignout() {

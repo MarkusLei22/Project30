@@ -1,9 +1,10 @@
 .c-list {
-  max-width: 850px;
+  max-width: 720px;
+  height: 100%;
   margin: 0 auto;
 }
 
 ch-c-item {
   float: left;
-  margin: 25px 25px;
+  margin: 20px
 }

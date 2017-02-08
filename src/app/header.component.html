@@ -1,15 +1,22 @@
-<div id="head-bar">
-  <ul grid>
-    <li column='4'></li>
-    <li column='4'>
-      <h1 id="headline" column='4'><a [routerLink]="['/']">30 Days</a></h1>
+<nav>
+  <div id="logo-btn">
+    <a [routerLink]="['/']">30</a>
+  </div>
+  <div id="menu-btn">
+    <button class="toggle-nav">Menu</button>
+  </div>
+  <ul class="mobile-nav">
+    <li class="nav-link" id="middle-group">
+        <a [routerLink]="['/challanges']">All Challanges</a>
+        <a (click)="onNew()">New Challange</a>
+        <a (click)="onMyChallanges()">My Challanges</a>
     </li>
-    <li column='4'>
+    <li>
       <a [routerLink]="['/signin']" *ngIf="user === null" column='4'>Sign in</a>
       <a [routerLink]="['/signout']" *ngIf="user != null" column='4'>Sign out</a>
     </li>
   </ul>
-</div>
+</nav>
 
 
 
