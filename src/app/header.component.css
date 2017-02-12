@@ -1,41 +1,39 @@
-#head-bar {
-  position: absolute;
+nav {
+  position: fixed;
+  background: #fff;
   top: 0;
   left: 0;
-  display: block;
   width: 100%;
-  padding: 1em 0;
+  height: 50px;
+  z-index: 10;
+
+  border-bottom: 3px solid #CC482A;
 }
 
-#head-bar ul {
+nav ul {
   list-style: none;
+  margin: 0;
 }
 
-#head-bar ul li {
-  text-align: center;
+nav a {
+  display: inline-block;
+  margin-top: 25px;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  font-size: 16px;
 }
 
-#headline{
-  display: inline;
-}
-
-#head-bar a :hover {
-  cursor: pointer;
+nav a:hover {
+  color: #ACB0BD;
 }
 
 
-
-
-
-.header-wrapper {
-  width: 100%;
-  height: 100%;
-  max-width: 1440px;
-  margin: 0 auto; }
-
-nav {
-  width: 100%;
-  height: 100%; }
+.desktop-nav {
+  display: none;
+}
 
 .mobile-nav {
   list-style: none;
@@ -46,9 +44,15 @@ nav {
   padding: 10px 0 0 0;
   background: #fff;
   position: absolute;
-  top: 50px; }
+  top: 50px;
+}
+
 @media screen and (min-width: 768px) {
   .mobile-nav {
+    display: none;
+  }
+
+  .desktop-nav {
     position: relative;
     top: auto;
     float: right;
@@ -100,30 +104,23 @@ nav {
 
 #sign-btn {
   text-align: center; }
-#sign-btn a {
-  margin: 25px 0 0 0;
-  -webkit-transform: translate(0, -50%);
-  -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  -o-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  font-size: 16px;
-  display: inline-block; }
-@media screen and (min-width: 768px) {
-  #sign-btn a {
-    margin-right: 20px; } }
+
 @media screen and (min-width: 768px) {
   #sign-btn {
-    text-align: right; } }
+    text-align: right;
+  }
+  #sign-btn a {
+    margin-right: 20px;
+  }
+  #logo-btn a {
+    margin-left: 20px;
+  }
+}
 
 #middle-group {
-  text-align: center; }
+  text-align: center;
+}
+
 #middle-group a {
-  display: inline-block;
-  margin-top: 25px;
-  -webkit-transform: translate(0, -50%);
-  -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  -o-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  font-size: 16px; }
+  padding: 0 10px;
+}

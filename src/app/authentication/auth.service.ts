@@ -9,6 +9,7 @@ declare var firebase: any;
 @Injectable()
 export class AuthService {
 
+  sub: Subscription;
   currentUserChanged: EventEmitter<User> = new EventEmitter<User>();
   currentUser: User = new User();
 
@@ -28,15 +29,28 @@ export class AuthService {
 
   signup(user: User) {
     firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-      .then(() => this.router.navigate(['/challanges']))
+      .then(() => {
+        user.uid = firebase.auth().currentUser.uid;
+        this.addNewUserToDb(user);
+        this.router.navigate(['/challanges']);
+      })
       .catch(function(error) {
         console.log(error);
       });
   }
 
+  private addNewUserToDb(user: User) {
+    firebase.database().ref('users/' + user.uid).set({
+      username : user.username,
+      email : user.email,
+      c_ongoing : '0',
+      c_completed : '0',
+      c_failed : '0'
+    });
+  }
+
   signout() {
     firebase.auth().signOut();
-    this.router.navigate(['/signin']);
   }
 
   isAuthenticated() {
@@ -53,23 +67,35 @@ export class AuthService {
   }
 
   fetchCurrentUser() {
-    firebase.auth().onAuthStateChanged(
+    this.sub = firebase.auth().onAuthStateChanged(
       user => {
         let currUser: User = null;
         if(user != null) {
           currUser = new User();
           currUser.uid = user.uid;
-          currUser.displayName = user.displayName;
           currUser.email = user.email;
+          this.getUsername(currUser.uid).subscribe(
+            (val: string) => {
+              currUser.username = val;
+              this.currentUser = currUser;
+              this.currentUserChanged.emit(currUser);
+              return;
+            }
+          );
         }
-        this.currentUser = currUser;
         this.currentUserChanged.emit(currUser);
       }
     )
   }
 
-  getUsername(uid: string) {
-    return 'user';
-    // TODO: implement this function!
+  getUsername(uid: string): Observable<string> {
+    const subject = new Subject<string>();
+    firebase.database().ref('users/' + uid).once('value').then(
+      (snapshot: any) => {
+        if(snapshot.val() != null)
+          subject.next(snapshot.val().username)
+      }
+    );
+    return subject.asObservable();
   }
 }

@@ -1,26 +1,47 @@
 .detail-header {
-  height: 150px;
-  background-color: #cccccc;
+  background-color: white;
+  padding: 1em 0;
+}
+
+.detail-header .container {
+  width: 600px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.row {
+  width: 100%;
+  display: block;
+  margin: .5em 0;
 }
 
 #row-one {
   height: 70%;
-  margin: 0;
+  display: flex;
 }
 
 #row-two {
   height: 30%;
-  margin: 0;
 }
 
 .col-one {
   height: 100%;
   width: 30%;
   float: left;
+  flex: 1 auto;
 }
 
 .col-two {
   height: 100%;
   width: 70%;
   float: left;
+  flex: 1 auto;
+}
+
+#c-title {
+  align-self: center;
+}
+
+.failed-text {
+  margin-top: .5em;
 }

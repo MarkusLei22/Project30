@@ -3,6 +3,7 @@ export class Challange {
   public uid: string;
   public accomplished: boolean[];
   public exp: string[];
+  public completed: boolean;
 
   constructor(public title: string,
               public desc: string,
@@ -13,5 +14,6 @@ export class Challange {
     for(let i=0; i<30; i++)
       this.accomplished[i] = false;
     this.exp = [];
+    this.completed = false;
   }
 }

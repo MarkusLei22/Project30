@@ -18,9 +18,10 @@ import {AuthService} from "./authentication/auth.service";
 import { SigninComponent } from './authentication/signin.component';
 import { SignupComponent } from './authentication/signup.component';
 import {AuthGuard} from "./authentication/auth.guard";
-import { FooterComponent } from './footer.component';
 import { CCircleComponent } from './challange/shared/c-circle.component';
 import { CHeaderComponent } from './challange/c-detail/c-header.component';
+import {COverviewComponent} from "./challange/c-overview/c-overview.component";
+import { UserStatsComponent } from './challange/c-overview/user-stats.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,10 @@ import { CHeaderComponent } from './challange/c-detail/c-header.component';
     CDiaryComponent,
     SigninComponent,
     SignupComponent,
-    FooterComponent,
     CCircleComponent,
     CHeaderComponent,
+    COverviewComponent,
+    UserStatsComponent,
   ],
   imports: [
     BrowserModule,

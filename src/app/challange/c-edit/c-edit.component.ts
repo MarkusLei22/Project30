@@ -10,12 +10,13 @@ import {Location} from "@angular/common";
 @Component({
   selector: 'ch-c-edit',
   templateUrl: './c-edit.component.html',
+  styleUrls: ['./c-edit.component.css']
 })
 export class CEditComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   challange: Challange;
 
-  private isNew: boolean = true;
+  isNew: boolean = true;
   editForm: FormGroup;
 
   constructor(private route: ActivatedRoute,

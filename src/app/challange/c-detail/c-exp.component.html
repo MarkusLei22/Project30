@@ -1,8 +1,8 @@
-<div class="detail-element">
+<div class="detail-element" *ngIf="challange.exp.length > 0">
   <h3 class="detail-headline">Experience</h3>
 
   <div class="detail-content">
-    <ul style="list-style: upper-roman">
+    <ul>
       <li *ngFor="let exp of challange.exp">{{exp}}</li>
     </ul>
   </div>

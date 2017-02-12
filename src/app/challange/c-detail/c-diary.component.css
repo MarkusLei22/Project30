@@ -24,11 +24,11 @@
 }
 
 .diary-item .fa-check {
-  color: teal;
+  color: #4db53c;
 }
 
 .diary-item .fa-times {
-  color: darkred;
+  color: #DB2800;
 }
 
 .diary-item .day-count {

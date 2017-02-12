@@ -5,15 +5,27 @@
   <div id="menu-btn">
     <button class="toggle-nav">Menu</button>
   </div>
-  <ul class="mobile-nav">
+
+  <ul class="desktop-nav">
     <li class="nav-link" id="middle-group">
-        <a [routerLink]="['/challanges']">All Challanges</a>
-        <a (click)="onNew()">New Challange</a>
-        <a (click)="onMyChallanges()">My Challanges</a>
+        <a routerLinkActive="-active" [routerLink]="['/challanges']">All Challanges</a>
+        <a routerLinkActive="-active" (click)="onNew()">New Challange</a>
+        <a routerLinkActive="-active" (click)="onMyChallanges()">My Challanges</a>
     </li>
+    <li class="nav-link" id="sign-btn">
+      <a routerLinkActive="-active" [routerLink]="['/signin']" *ngIf="user === null" column='4'>Sign in</a>
+      <a routerLinkActive="-active" (click)="onSignout()" *ngIf="user != null" column='4'>Sign out</a>
+    </li>
+  </ul>
+
+
+  <ul class="mobile-nav">
+    <li><a [routerLink]="['/challanges']">All Challanges</a></li>
+    <li><a (click)="onNew()">New Challange</a></li>
+    <li><a (click)="onMyChallanges()">My Challanges</a></li>
     <li>
       <a [routerLink]="['/signin']" *ngIf="user === null" column='4'>Sign in</a>
-      <a [routerLink]="['/signout']" *ngIf="user != null" column='4'>Sign out</a>
+      <a (click)="onSignout()" *ngIf="user != null" column='4'>Sign out</a>
     </li>
   </ul>
 </nav>

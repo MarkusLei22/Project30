@@ -1,0 +1,12 @@
+.container {
+  width: 600px;
+}
+
+.edit-btn {
+  float: right;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  color: #ACB0BD;
+}

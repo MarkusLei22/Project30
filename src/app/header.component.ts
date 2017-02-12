@@ -28,7 +28,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   onNew() {
-    this.router.navigate(['/user', this.user.uid, 'new']);
+    if(this.user) {
+      this.router.navigate(['/user', this.user.uid, 'new']);
+    } else {
+      this.router.navigate(['/signin']);
+    }
   }
 
   onMyChallanges() {
@@ -41,5 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   onSignout() {
     this.authService.signout();
+    this.router.navigate(['/signin']);
   }
 }

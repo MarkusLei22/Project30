@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, OnDestroy, ChangeDetectorRef, OnChanges} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Challange} from "../challange";
 import {ChallangeService} from "../challange.service";
@@ -15,7 +15,7 @@ export class CDetailComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private dataSub: Subscription;
   challange: Challange = null;
-  ownChallange: boolean = false;
+  editable: boolean = false;
 
   constructor(private cService: ChallangeService,
               private authService: AuthService,
@@ -26,7 +26,7 @@ export class CDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(
       (param: any) => {
         this.challange = this.cService.getChallange(param['id']);
-        this.ownChallange = param.hasOwnProperty('userid');
+        this.editable = param.hasOwnProperty('userid');
       }
     );
 

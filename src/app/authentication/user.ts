@@ -3,7 +3,7 @@
  */
 export class User {
   uid?: string;
-  displayName: string;
+  username: string;
   email: string;
   password: string;
   confirmPassword?:string;

@@ -1,9 +1,10 @@
-<div>
+<div class="container">
   <form [formGroup]="signinForm" (submit)="onSubmit()">
     <label for="email">E-mail</label>
     <input type="email" id="email" formControlName="email">
     <label for="password">Password</label>
     <input type="password" id="password" formControlName="password">
-    <button type="submit" [disabled]="!signinForm.valid">Sign In</button>
+    <input type="submit" value="Sign In" [disabled]="!signinForm.valid">
+    <a class="sign-clue" [routerLink]="['/signup']">or Sign Up</a>
   </form>
 </div>
