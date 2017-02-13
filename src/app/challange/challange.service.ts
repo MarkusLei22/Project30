@@ -108,6 +108,23 @@ export class ChallangeService {
     this.addOngoingChallange(newChallange.uid, newChallange.id);
   }
 
+  updateChallangeDb(challange: Challange) {
+    let challangeData = this.getChallangeDataObject(challange);
+
+    let updates = {};
+    updates['challanges/' + challange.id] = challangeData;
+    firebase.database().ref().update(updates);
+  }
+
+  removeChallangeDb(challange: Challange) {
+    firebase.database().ref('challanges/' + challange.id).remove();
+    this.deleteOngoingChallange(challange.uid, challange.id);
+    this.deleteCompletedChallange(challange.uid, challange.id);
+    this.deleteCompletedChallange(challange.uid, challange.id);
+  }
+
+
+
   addChallangeStats(ref: string, uid: string, cid: string) {
     let arrayData;
 
@@ -182,23 +199,9 @@ export class ChallangeService {
   }
 
 
-  updateChallangeDb(challange: Challange) {
-    let challangeData = this.getChallangeDataObject(challange);
-
-    let updates = {};
-    updates['challanges/' + challange.id] = challangeData;
-    firebase.database().ref().update(updates)
-  }
-
-  removeChallangeDb(challange: Challange) {
-    firebase.database().ref('challanges/' + challange.id).remove();
-    this.deleteOngoingChallange(challange.uid, challange.id);
-    this.deleteCompletedChallange(challange.uid, challange.id);
-    this.deleteCompletedChallange(challange.uid, challange.id);
-  }
-
   confirmChallangeLegitity(challange: Challange) {
     let accDays = this.getChallangeAccomplishedDays(challange);
+    let runtime = this.getChallangeRuntime(challange);
     if(accDays == 30) {
       challange.failed = false;
       challange.completed = true;
@@ -207,7 +210,9 @@ export class ChallangeService {
       return;
     }
 
-    if(this.getChallangeRuntime(challange) > accDays + 1) {
+    if(runtime > accDays) {
+      if(runtime-1 == accDays && !challange.accomplished[runtime - 1])
+        return;
       challange.failed = true;
       this.deleteOngoingChallange(challange.uid, challange.id);
       this.addFailedChallange(challange.uid, challange.id);

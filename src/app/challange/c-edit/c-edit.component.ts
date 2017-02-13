@@ -14,6 +14,7 @@ import {Location} from "@angular/common";
 })
 export class CEditComponent implements OnInit, OnDestroy {
   private sub: Subscription;
+  private cSub: Subscription;
   challange: Challange;
 
   isNew: boolean = true;
@@ -35,6 +36,10 @@ export class CEditComponent implements OnInit, OnDestroy {
           this.challange = new Challange('', '', new Date(), false);
         }
       });
+
+    this.cSub = this.cService.dataChanged.subscribe(
+      (challanges: Challange[]) => this.challange = challanges[0]
+    );
 
     this.InitializeForm();
   }

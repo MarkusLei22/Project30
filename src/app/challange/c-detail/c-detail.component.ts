@@ -14,6 +14,7 @@ import {AuthService} from "../../authentication/auth.service";
 export class CDetailComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private dataSub: Subscription;
+  private cid: string;
   challange: Challange = null;
   editable: boolean = false;
 
@@ -25,14 +26,15 @@ export class CDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(
       (param: any) => {
-        this.challange = this.cService.getChallange(param['id']);
+        this.cid = param['id'];
+        this.challange = this.cService.getChallange(this.cid);
         this.editable = param.hasOwnProperty('userid');
       }
     );
 
     this.dataSub = this.cService.dataChanged.subscribe(
       (data: Challange[]) => {
-        this.challange = data[0];
+        this.challange = this.cService.getChallange(this.cid);
         this.changeDetector.detectChanges();
       }
     );
@@ -44,7 +46,7 @@ export class CDetailComponent implements OnInit, OnDestroy {
   }
 
   onDiaryModified(oldChallange: Challange) {
-    this.cService.editChallange(oldChallange, this.challange);
-    this.changeDetector.detectChanges();
+    this.cService.updateChallangeDb(this.challange); // (oldChallange, this.challange);
+    // this.changeDetector.detectChanges();
   }
 }
