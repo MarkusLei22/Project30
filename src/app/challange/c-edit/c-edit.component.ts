@@ -32,16 +32,18 @@ export class CEditComponent implements OnInit, OnDestroy {
         if (param.hasOwnProperty('id')) {
           this.isNew = false;
           this.challange = this.cService.getChallange(param['id']);
+          this.InitializeForm();
         } else {
           this.challange = new Challange('', '', new Date(), false);
+          this.InitializeForm();
         }
       });
 
     this.cSub = this.cService.dataChanged.subscribe(
-      (challanges: Challange[]) => this.challange = challanges[0]
+      (challanges: Challange[]) => {
+        this.challange = challanges[0];
+      }
     );
-
-    this.InitializeForm();
   }
 
   ngOnDestroy() {

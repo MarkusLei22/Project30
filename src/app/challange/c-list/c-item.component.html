@@ -1,5 +1,5 @@
 <div class="item" [class.failed]="challange.failed">
-    <a [routerLink]="[challange.id]">
+    <a (click)="onItemClick()" class="item-box-link">
       <div class="item-content">
         <div class="item-head">
           <p>{{challange.startDate | date:'dd/MM/yy'}}</p>
@@ -8,7 +8,7 @@
         <div class="item-inner">
           <h3 class="item-title">{{challange.title}}</h3>
           <ch-c-circle [challange]="challange" class="item-circle"></ch-c-circle>
-          <a class="item-username" [routerLink]="['/user', challange.uid]">by {{username}}</a>
+          <a class="item-username" [routerLink]="['/user', challange.uid]" *ngIf="ready">by {{username}}</a>
         </div>
       </div>
     </a>

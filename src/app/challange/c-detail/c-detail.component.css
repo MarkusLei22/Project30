@@ -1,5 +1,5 @@
 .container {
-  width: 600px;
+  width: 340px;
 }
 
 .edit-btn {
@@ -9,4 +9,10 @@
 
 .edit-btn:hover {
   color: #ACB0BD;
+}
+
+@media screen and (min-width: 630px) {
+  .container {
+    width: 600px;
+  }
 }

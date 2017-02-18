@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "css/reset.css";
+@import "css/font-awesome.min.css";
+
 * {
   box-sizing: border-box;
 }
@@ -26,6 +29,10 @@ a {
   cursor: pointer;
 }
 
+a:hover {
+  color: #ACB0BD;
+}
+
 .-active {
   color: #49475B;
 }
@@ -36,15 +43,23 @@ button {
 
 main {
   width: 100vw;
-  height: 100vh;
+  min-height:100vh;
+  height: 100%;
   margin-top: 50px;
   background: #fafafa;
 }
 
 .container {
-  max-width: 720px;
+  max-width: 740px;
+  width: 320px;
   margin: 0 auto;
   padding-top: 2em;
+}
+
+@media screen and (min-width: 740px) {
+  .container {
+    width: auto;
+  }
 }
 
 ul {
@@ -148,4 +163,14 @@ input[type='submit']:disabled {
 
 .sign-clue:hover {
   color: #ACB0BD;
+}
+
+.error {
+  margin: 2em 0 0 1em;
+  padding: 1em;
+  text-align: center;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+  background: rgba(185, 35, 0, 0.55);
+  color: white;
 }

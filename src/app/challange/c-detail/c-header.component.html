@@ -13,7 +13,7 @@
         <p>Started: {{challange.startDate | date}}</p>
       </div>
       <div id="c-username" class="col-two">
-        <p>by {{cUsername}}</p>
+        <a [routerLink]="['/user', challange.uid]" *ngIf="cUsername">by {{cUsername}}</a>
       </div>
     </div>
   </div>

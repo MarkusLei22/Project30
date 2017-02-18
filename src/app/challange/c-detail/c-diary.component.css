@@ -1,11 +1,20 @@
+.detail-content {
+  margin-left: 0;
+}
+
 .diary-container {
   width: 100%;
-  max-width: 480px;
+  height: 250px;
+  max-width: 330px;
+}
+
+.diary-container:after {
+  clear: both;
 }
 
 .diary-item {
-  width: 80px;
-  height: 80px;
+  width: 55px;
+  height: 55px;
   position: relative;
   float: left;
   border: 1px solid lightgrey;
@@ -16,7 +25,7 @@
 }
 
 .diary-item .fa {
-  font-size: 40px;
+  font-size: 25px;
   position: relative;
   top: 50%;
   left: 50%;
@@ -33,6 +42,32 @@
 
 .diary-item .day-count {
   position: absolute;
+  font-size: 16px;
   bottom: 0;
   right: 5%;
 }
+
+@media screen and (min-width: 630px) {
+  .diary-container {
+    max-width: 480px;
+    height: 400px;
+  }
+
+  .diary-item {
+    width: 80px;
+    height: 80px;
+  }
+
+  .diary-item .fa {
+    font-size: 40px;
+  }
+
+  .diary-item .day-count {
+    font-size: 18px;
+  }
+
+  .detail-content {
+    margin: inherit;
+  }
+}
+

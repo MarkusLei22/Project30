@@ -13,6 +13,15 @@ export class ChallangeService {
 
   private challanges: Challange[] = [];
 
+  private userChallangesRef;
+  private allChallangesRef;
+  private challangeRef;
+
+  constructor() {
+    this.userChallangesRef = firebase.database().ref('challanges');
+    this.allChallangesRef = firebase.database().ref('challanges');
+  }
+
   getChallanges() {
     console.log(this.challanges);
     return this.challanges;
@@ -35,6 +44,7 @@ export class ChallangeService {
 
   editChallange(oldChallange: Challange, newChallange: Challange) {
     this.confirmChallangeLegitity(newChallange);
+    this.updateAccomplishedArray(oldChallange, newChallange);
     this.challanges[this.challanges.indexOf(oldChallange)] = newChallange;
     this.updateChallangeDb(newChallange);
   }
@@ -44,12 +54,27 @@ export class ChallangeService {
     this.addNewChallangeDb(newChallange);
   }
 
+  updateAccomplishedArray(oldChallange: Challange, newChallange: Challange) {
+    if(oldChallange.startDate < newChallange.startDate) {
+      let timeDiff = Math.abs(oldChallange.startDate.getTime() - newChallange.startDate.getTime());
+      let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      let accDays = this.getChallangeAccomplishedDays(oldChallange);
+
+      for(let i = accDays - 1; i > accDays - diffDays - 1; i--)
+        newChallange.accomplished[i] = false;
+    }
+  }
+
+
   fetchAllChallanges() {
-    firebase.database().ref('challanges').on('value',
+    this.allChallangesRef.off();
+    this.allChallangesRef.on('value',
       (snapshot: any) => {
+        console.log(snapshot.val());
         if(snapshot.val() != null) {
           this.challanges = Object.keys(snapshot.val())
             .map(key => snapshot.val()[key]);
+
           for (let i = 0; i < this.challanges.length; i++) {
             this.challanges[i] = this.reformatStoredChallange(this.challanges[i]);
             this.confirmChallangeLegitity(this.challanges[i]);
@@ -58,12 +83,13 @@ export class ChallangeService {
         else
           this.challanges = [];
         this.dataChanged.emit(this.challanges);
-      }
+      },
     );
   }
 
   fetchUserChallanges(uid: string) {
-    firebase.database().ref('challanges/').orderByChild('uid')
+    this.userChallangesRef.off();
+    this.userChallangesRef.orderByChild('uid')
       .equalTo(uid).on('value',
       (snapshot: any) => {
         if(snapshot.val() != null) {
@@ -83,7 +109,10 @@ export class ChallangeService {
   }
 
   fetchChallange(id: string) {
-    firebase.database().ref('challanges/' + id).on('value',
+    if(this.challangeRef)
+      this.challangeRef.off();
+    this.challangeRef = firebase.database().ref('challanges/' + id);
+    this.challangeRef.on('value',
       (snapshot: any) => {
         this.challanges = [];
         if(snapshot.val() != null) {
@@ -96,6 +125,8 @@ export class ChallangeService {
         this.dataChanged.emit(this.challanges);
       })
   }
+
+
 
   addNewChallangeDb(newChallange: Challange) {
     let key = firebase.database().ref('challanges').push().key;
@@ -205,29 +236,36 @@ export class ChallangeService {
     if(accDays == 30) {
       challange.failed = false;
       challange.completed = true;
+      this.deleteFailedChallange(challange.uid, challange.id);
       this.deleteOngoingChallange(challange.uid, challange.id);
       this.addCompletedChallange(challange.uid, challange.id);
       return;
     }
 
     if(runtime > accDays) {
-      if(runtime-1 == accDays && !challange.accomplished[runtime - 1])
+      if(runtime-1 == accDays && !challange.accomplished[runtime - 1]) {
+        challange.failed = false;
+        this.deleteFailedChallange(challange.uid, challange.id);
+        this.deleteCompletedChallange(challange.uid, challange.id);
+        this.addOngoingChallange(challange.uid, challange.id);
         return;
+      }
       challange.failed = true;
       this.deleteOngoingChallange(challange.uid, challange.id);
+      this.deleteCompletedChallange(challange.uid, challange.id);
       this.addFailedChallange(challange.uid, challange.id);
     }
     else {
       challange.failed = false;
-      this.addOngoingChallange(challange.uid, challange.id);
       this.deleteFailedChallange(challange.uid, challange.id);
+      this.deleteCompletedChallange(challange.uid, challange.id);
+      this.addOngoingChallange(challange.uid, challange.id);
     }
   }
 
   completeToday(challange: Challange) {
-    let old: Challange = Object.assign({}, challange); // deep copy
     challange.accomplished[this.getChallangeRuntime(challange) - 1] = true;
-    this.editChallange(old, challange);
+    this.updateChallangeDb(challange);
   }
 
   checkCompletedToday(challange: Challange) {
@@ -250,7 +288,7 @@ export class ChallangeService {
       id : challange.id,
       title : challange.title,
       desc : challange.desc,
-      startDate : challange.startDate.toDateString(),
+      startDate : challange.startDate.toString(),
       failed : challange.failed,
       uid : challange.uid,
       accomplished : challange.accomplished,

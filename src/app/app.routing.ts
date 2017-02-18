@@ -11,7 +11,7 @@ const APP_ROUTES: Routes = [
   {path: '', redirectTo:'challanges', pathMatch:'full'},
   {path: 'challanges', component: COverviewComponent},
   {path: 'challanges/:id', component: CDetailComponent},
-  {path: 'user/:userid', component: COverviewComponent, canActivate: [AuthGuard]},
+  {path: 'user/:userid', component: COverviewComponent},
   {path: 'user/:userid/new', component: CEditComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   {path: 'user/:userid/:id', component: CDetailComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   {path: 'user/:userid/:id/edit', component: CEditComponent, canActivate: [AuthGuard]},

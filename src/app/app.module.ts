@@ -22,6 +22,7 @@ import { CCircleComponent } from './challange/shared/c-circle.component';
 import { CHeaderComponent } from './challange/c-detail/c-header.component';
 import {COverviewComponent} from "./challange/c-overview/c-overview.component";
 import { UserStatsComponent } from './challange/c-overview/user-stats.component';
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UserStatsComponent } from './challange/c-overview/user-stats.component'
     CHeaderComponent,
     COverviewComponent,
     UserStatsComponent,
+    LoadingIndicatorComponent,
   ],
   imports: [
     BrowserModule,

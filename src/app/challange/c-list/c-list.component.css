@@ -5,6 +5,14 @@
 }
 
 ch-c-item {
-  float: left;
-  margin: 20px
+  display: block;
+  margin: 20px 0;
+}
+
+@media screen and (min-width: 740px) {
+  ch-c-item {
+    display: inline;
+    float: left;
+    margin: 20px
+  }
 }

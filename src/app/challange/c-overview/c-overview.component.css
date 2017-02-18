@@ -1,0 +1,10 @@
+.container {
+  width: 340px;
+  margin: auto;
+}
+
+@media screen and (min-width: 740px) {
+  .container {
+    width: inherit;
+  }
+}

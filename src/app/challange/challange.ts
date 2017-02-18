@@ -1,6 +1,7 @@
 export class Challange {
   public id: string;
   public uid: string;
+  public username?: string;
   public accomplished: boolean[];
   public exp: string[];
   public completed: boolean;

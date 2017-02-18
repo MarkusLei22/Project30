@@ -11,4 +11,8 @@
     <input type="submit" value="Sign Up" [disabled]="!signupForm.valid">
     <a class="sign-clue" [routerLink]="['/signin']">or Sign In</a>
   </form>
+
+  <div class="error" *ngIf="error">
+    <p>{{errorMsg}}</p>
+  </div>
 </div>

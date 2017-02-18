@@ -27,8 +27,9 @@ export class CDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(
       (param: any) => {
         this.cid = param['id'];
+        if(param.hasOwnProperty('userid'))
+          this.editable = (param['userid'] == this.authService.currentUser.uid);
         this.challange = this.cService.getChallange(this.cid);
-        this.editable = param.hasOwnProperty('userid');
       }
     );
 
@@ -46,7 +47,6 @@ export class CDetailComponent implements OnInit, OnDestroy {
   }
 
   onDiaryModified(oldChallange: Challange) {
-    this.cService.updateChallangeDb(this.challange); // (oldChallange, this.challange);
-    // this.changeDetector.detectChanges();
+    this.cService.updateChallangeDb(this.challange);
   }
 }

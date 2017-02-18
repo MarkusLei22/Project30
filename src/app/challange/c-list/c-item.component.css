@@ -97,3 +97,7 @@
 .failed .item-title {
   text-decoration: line-through;
 }
+
+.item-box-link:hover {
+  color: #000;
+}

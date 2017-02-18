@@ -12,6 +12,7 @@ export class AuthService {
   sub: Subscription;
   currentUserChanged: EventEmitter<User> = new EventEmitter<User>();
   currentUser: User = new User();
+  public errorEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router)
   {
@@ -21,10 +22,13 @@ export class AuthService {
 
   signin(user: User) {
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-      .then(() => this.router.navigate(['/challanges']))
-      .catch(function(error) {
-        console.log(error);
-      });
+      .then(() => {
+        this.router.navigate(['/challanges']);
+        return true;
+      })
+      .catch(
+        (error: string) => this.errorEvent.emit(error)
+      );
   }
 
   signup(user: User) {
@@ -34,9 +38,9 @@ export class AuthService {
         this.addNewUserToDb(user);
         this.router.navigate(['/challanges']);
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(
+        error => this.errorEvent.emit(error)
+      );
   }
 
   private addNewUserToDb(user: User) {
