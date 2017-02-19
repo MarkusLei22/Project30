@@ -1,5 +1,4 @@
 import {Routes, RouterModule} from "@angular/router";
-import {CListComponent} from "./challange/c-list/c-list.component";
 import {CDetailComponent} from "./challange/c-detail/c-detail.component";
 import {CEditComponent} from "./challange/c-edit/c-edit.component";
 import {SigninComponent} from "./authentication/signin.component";

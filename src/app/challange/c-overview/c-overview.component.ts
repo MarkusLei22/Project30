@@ -41,7 +41,12 @@ export class COverviewComponent extends LoadingPage implements OnInit, OnDestroy
 
   ngOnInit() {
     this.subAuth = this.authService.currentUserChanged.subscribe(
-      (user: User) => this.editableChallanges = (this.userid == user.uid)
+      (user: User) => {
+        if(user)
+          this.editableChallanges = (this.userid == user.uid);
+        else
+          this.editableChallanges = false;
+      }
     );
 
     this.subData = this.cService.dataChanged.subscribe(
