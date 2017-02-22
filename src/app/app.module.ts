@@ -23,6 +23,7 @@ import { CHeaderComponent } from './challange/c-detail/c-header.component';
 import {COverviewComponent} from "./challange/c-overview/c-overview.component";
 import { UserStatsComponent } from './challange/c-overview/user-stats.component';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator
     COverviewComponent,
     UserStatsComponent,
     LoadingIndicatorComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

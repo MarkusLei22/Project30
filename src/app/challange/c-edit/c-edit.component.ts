@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Challange} from "../challange";
 import {ChallangeService} from "../challange.service";
@@ -24,7 +24,8 @@ export class CEditComponent implements OnInit, OnDestroy {
               private cService: ChallangeService,
               private authService: AuthService,
               private location: Location,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(
@@ -95,12 +96,13 @@ export class CEditComponent implements OnInit, OnDestroy {
     else
       this.cService.addChallange(newChallange);
 
-    this.location.back();
+    this.router.navigate(['/user', newChallange.uid, newChallange.id]);
   }
 
   onDelete() {
+    let uid = this.challange.uid;
     this.cService.deleteChallange(this.challange);
-    this.location.back();
+    this.router.navigate(['/user', uid]);
   }
 
 }

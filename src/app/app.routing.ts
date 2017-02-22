@@ -6,9 +6,11 @@ import {SigninComponent} from "./authentication/signin.component";
 import {SignupComponent} from "./authentication/signup.component";
 import {AuthGuard} from "./authentication/auth.guard";
 import {COverviewComponent} from "./challange/c-overview/c-overview.component";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
 
 const APP_ROUTES: Routes = [
-  {path: '', redirectTo:'challanges', pathMatch:'full'},
+  {path: '', redirectTo: 'home', pathMatch:'full'},
+  {path: 'home', component: LandingPageComponent},
   {path: 'challanges', component: COverviewComponent},
   {path: 'challanges/:id', component: CDetailComponent},
   {path: 'user/:userid', component: COverviewComponent},

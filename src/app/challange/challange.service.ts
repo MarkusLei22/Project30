@@ -70,7 +70,6 @@ export class ChallangeService {
     this.allChallangesRef.off();
     this.allChallangesRef.on('value',
       (snapshot: any) => {
-        console.log(snapshot.val());
         if(snapshot.val() != null) {
           this.challanges = Object.keys(snapshot.val())
             .map(key => snapshot.val()[key]);

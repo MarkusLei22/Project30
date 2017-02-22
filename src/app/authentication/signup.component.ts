@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
 import {AuthService} from "./auth.service";
 import {Subscription} from "rxjs";
 
@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
       username : ['', Validators.required],
       email : ['', Validators.required],
       password : ['', Validators.required],
-      password2 : ['', Validators.required],
+      confirmPassword : ['', Validators.required]
     })
   }
 
@@ -47,9 +47,23 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  // TODO: implement custom validator for validation password
+  isEqualPassword(control: FormControl): {[s: string]: boolean} {
+    if (!this.signupForm) {
+      return {passwordsNotMatch: true};
+
+    }
+    if (control.value !== this.signupForm.controls['password'].value) {
+      return {passwordsNotMatch: true};
+    }
+  }
 
   onSubmit() {
-    this.authService.signup(this.signupForm.value);
+    if(this.signupForm.controls['password'].value == this.signupForm.controls['confirmPassword'].value)
+      this.authService.signup(this.signupForm.value);
+    else {
+      this.errorMsg = 'You have entered two different passwords - choose the better one :)';
+      this.error = true;
+      this.changeDetector.detectChanges();
+    }
   }
 }
