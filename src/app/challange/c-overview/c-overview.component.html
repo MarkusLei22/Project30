@@ -1,6 +1,6 @@
 <div class="container">
   <ch-user-stats [username]="username" [completed]="completed" [failed]="failed" [ongoing]="ongoing" *ngIf="userChallanges"></ch-user-stats>
-  <h2 *ngIf="!userChallanges">All Challanges</h2>
+  <h2 *ngIf="!userChallanges">All Challenges</h2>
   <ch-c-list [challanges]="challanges" [editable]="editableChallanges"></ch-c-list>
   <div *ngIf="loading">
     <ch-loading-indicator></ch-loading-indicator>

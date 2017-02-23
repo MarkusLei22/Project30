@@ -4,9 +4,9 @@
   </div>
 
   <div id="middle-group" class="desktop-nav">
-      <a routerLinkActive="-active" [routerLink]="['/challanges']">All Challanges</a>
-      <a routerLinkActive="-active" (click)="onNew()">New Challange</a>
-      <a routerLinkActive="-active" (click)="onMyChallanges()">My Challanges</a>
+      <a routerLinkActive="-active" [routerLink]="['/challanges']">All Challenges</a>
+      <a routerLinkActive="-active" (click)="onNew()">New Challenge</a>
+      <a routerLinkActive="-active" (click)="onMyChallanges()">My Challenges</a>
   </div>
   <div id="sign-btn" class="desktop-nav">
     <a routerLinkActive="-active" [routerLink]="['/signin']" *ngIf="user === null">Sign in</a>
@@ -18,9 +18,9 @@
   </div>
 
   <ul class="mobile-nav">
-    <li><a class="toggle-nav" [routerLink]="['/challanges']">All Challanges</a></li>
-    <li><a class="toggle-nav" (click)="onNew()">New Challange</a></li>
-    <li><a class="toggle-nav" (click)="onMyChallanges()">My Challanges</a></li>
+    <li><a class="toggle-nav" [routerLink]="['/challanges']">All Challenges</a></li>
+    <li><a class="toggle-nav" (click)="onNew()">New Challenge</a></li>
+    <li><a class="toggle-nav" (click)="onMyChallanges()">My Challenges</a></li>
     <li class="toggle-nav">
       <a [routerLink]="['/signin']" *ngIf="user === null">Sign in</a>
       <a (click)="onSignout()" *ngIf="user != null">Sign out</a>

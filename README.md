@@ -10,20 +10,20 @@ Have fun! :)
 <h2>Usage</h2>
 <ul>
 <li>
-<b>Add a new challange</b>
-<p>Just click on the <i>New Challange</i> button in the top nav</p>
+<b>Add a new challenge</b>
+<p>Just click on the <i>New challenge</i> button in the top nav</p>
 </li>
 <li>
-<b>Complete a challange</b>
-<p>To track your progress on today's challange, navigate to <i>My Challanges</i> and click on the <i>complete button</i> of the challange</p>
+<b>Complete a challenge</b>
+<p>To track your progress on today's challenge, navigate to <i>My Challenges</i> and click on the <i>complete button</i> of the challenge</p>
 </li>
 <li>
-<b>Edit a challange</b>
-<p>To edit Title, Description and Experience navigate to <i>My Challanges</i> and click on the <i>edit</i> button of the challange</p>
+<b>Edit a challenge</b>
+<p>To edit Title, Description and Experience navigate to <i>My Challenges</i> and click on the <i>edit</i> button of the challenge</p>
 </li>
 <li>
-<b>Edit Progress of a challange</b>
-<p>To alter completed days navigate to <i>My Challanges</i>, select the particular challange and tap on the days at the <i>diary</i> section, which sould be toggled.</p>
+<b>Edit Progress of a challenge</b>
+<p>To alter completed days navigate to <i>My Challenges</i>, select the particular challenge and tap on the days at the <i>diary</i> section, which sould be toggled.</p>
 </li>
 <ul>
 
