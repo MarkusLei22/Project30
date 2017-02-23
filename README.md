@@ -3,7 +3,7 @@
 <p><b>Project-30</b> is my first attempt to build an functional <b>Angular2</b> app.
 The purpose of the app is to help people to build better habits.
 This is accomplished through a commitment for 30 days to one specific behaviour.
-It could be running, taking a cold shower, reading or taking a photo <i>everyday</i></p>.
+It could be running, taking a cold shower, reading or taking a photo <i>everyday</i>.</p>
 <p><i>All it takes is commitment and willpower.</i></p>
 Have fun! :)
 
