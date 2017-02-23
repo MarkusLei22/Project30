@@ -1,6 +1,6 @@
 <h1>Project-30</h1>
 
-<p><b>Project-30</b> is my first attempt to build an functional <b>Angular2</b> app.
+<p><b>Project-30</b> is my first attempt to build an functional <b>Angular2</b> app, with <b>Firebase</b> as a backend.
 The purpose of the app is to help people to build better habits.
 This is accomplished through a commitment for 30 days to one specific behaviour.
 It could be running, taking a cold shower, reading or taking a photo <i>everyday</i>.</p>
@@ -26,4 +26,5 @@ Have fun! :)
 <p>To alter completed days navigate to <i>My Challenges</i>, select the particular challenge and tap on the days at the <i>diary</i> section, which sould be toggled.</p>
 </li>
 <ul>
+<p>To enjoy a clean performance of the app, use Google Chrome.</p>
 

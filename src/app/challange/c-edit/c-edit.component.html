@@ -22,4 +22,8 @@
       <button type="button" class="delete-btn" (click)="onDelete()" *ngIf="!isNew">Delete</button>
     </div>
   </form>
+  <div class="error" *ngIf="dateError">
+    <p>Start your challange today! Just don't enter a date in the future :)</p>
+  </div>
+
 </div>

@@ -18,6 +18,7 @@ export class CEditComponent implements OnInit, OnDestroy {
   challange: Challange;
 
   isNew: boolean = true;
+  dateError: boolean = false;
   editForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
@@ -42,6 +43,7 @@ export class CEditComponent implements OnInit, OnDestroy {
 
     this.cSub = this.cService.dataChanged.subscribe(
       (challanges: Challange[]) => {
+        console.log(challanges);
         this.challange = challanges[0];
       }
     );
@@ -90,6 +92,12 @@ export class CEditComponent implements OnInit, OnDestroy {
     newChallange.startDate = new Date(newChallange.startDate);
     newChallange.failed = false;
     newChallange.uid = this.authService.currentUser.uid;
+
+    if(newChallange.startDate.getTime() > Date.now())
+    {
+      this.dateError = true;
+      return;
+    }
 
     if(!this.isNew)
       this.cService.editChallange(this.challange, newChallange);

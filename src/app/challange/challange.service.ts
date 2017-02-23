@@ -39,6 +39,7 @@ export class ChallangeService {
 
   deleteChallange(challange: Challange) {
     this.removeChallangeDb(challange);
+
     this.challanges.splice(this.challanges.indexOf(challange), 1);
   }
 
@@ -150,7 +151,7 @@ export class ChallangeService {
     firebase.database().ref('challanges/' + challange.id).remove();
     this.deleteOngoingChallange(challange.uid, challange.id);
     this.deleteCompletedChallange(challange.uid, challange.id);
-    this.deleteCompletedChallange(challange.uid, challange.id);
+    this.deleteFailedChallange(challange.uid, challange.id);
   }
 
 
