@@ -27,4 +27,7 @@ Have fun! :)
 </li>
 <ul>
 <p>To enjoy a clean performance of the app, use Google Chrome.</p>
+<h2>Test User</h2>
+<p>email: test@test.com</p>
+<p>PW: 123456</p>
 
