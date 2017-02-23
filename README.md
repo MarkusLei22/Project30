@@ -25,7 +25,7 @@ Have fun! :)
 <b>Edit Progress of a challenge</b>
 <p>To alter completed days navigate to <i>My Challenges</i>, select the particular challenge and tap on the days at the <i>diary</i> section, which sould be toggled.</p>
 </li>
-<ul>
+</ul>
 <p>To enjoy a clean performance of the app, use Google Chrome.</p>
 <h2>Test User</h2>
 <p>email: test@test.com</p>
