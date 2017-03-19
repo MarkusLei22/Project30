@@ -1,9 +1,0 @@
-<div *ngIf="challange != null" [class.failed]="challange.failed">
-  <ch-c-header [challange]="challange"></ch-c-header>
-  <div class="container">
-    <a [routerLink]="['edit']" *ngIf="editable" class="edit-btn">edit</a>
-    <ch-c-desc [challange]="challange"></ch-c-desc>
-    <ch-c-exp [challange]="challange"></ch-c-exp>
-    <ch-c-diary [challange]="challange" [diaryModifyable]="editable" (diaryChanged)="onDiaryModified($event)"></ch-c-diary>
-  </div>
-</div>

@@ -1,6 +1,6 @@
 import { Project30Page } from './app.po';
 
-describe('project-30 App', function() {
+describe('project30 App', () => {
   let page: Project30Page;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('project-30 App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('ch works!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });

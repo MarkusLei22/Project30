@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ChallangeService} from "./challange/challange.service";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ch-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'app works!';
 }
